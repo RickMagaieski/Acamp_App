@@ -1,0 +1,34 @@
+import Inscriptions
+
+while True:
+    print()
+
+    print("======= Acamp WBSDAC 2026 Menu =======")
+
+    print()
+
+    print("1. Inscricoes\n2. Financas\n\n6. Sair")
+
+    print()
+
+    user = int(input("Selecione a opcao desejada: "))
+
+    print()
+
+    if user == 1:
+        while True:
+
+            print()
+
+            choice = Inscriptions.menu()
+
+            if choice == 1:
+                Inscriptions.add_participant()
+            elif choice == 2:
+                for inscritos in Inscriptions.participants:
+                        print(inscritos, end='\n')
+            elif choice == 3:
+                break
+
+    if user == 6:
+        break
