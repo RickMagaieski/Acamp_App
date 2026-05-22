@@ -2,11 +2,10 @@ participants = []
 
 def add_participant():
 
-    name_inpt = input("Nome Completo: ")
+    name_inpt = input("Nome Completo: ").lower()
     age_inpt = input("Idade: ")
     phone_inpt = input("Telefone: ")
-    family_inpt = input("Groupo: ")
-    transp_inpt = input("Transporte (pessoal/necessita ajuda): ")
+    medical_inpt = input("Condicao Medica/Alergias: ")
     paid_inpt = input("Valor pago: ")
     status_inpt = input("Status do pagamento: ")
 
@@ -14,8 +13,7 @@ def add_participant():
         "name": name_inpt,
         "age": age_inpt,
         "phone": phone_inpt,
-        "family/group": family_inpt,
-        "transportation": transp_inpt,
+        "medical": medical_inpt,
         "payment": paid_inpt,
         "status": status_inpt
     }

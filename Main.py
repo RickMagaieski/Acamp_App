@@ -1,4 +1,5 @@
 import Inscriptions
+import Finance
 
 while True:
     print()
@@ -24,10 +25,20 @@ while True:
 
             if choice == 1:
                 Inscriptions.add_participant()
-            elif choice == 2:
+            if choice == 2:
                 for inscritos in Inscriptions.participants:
                         print(inscritos, end='\n')
-            elif choice == 3:
+            if choice == 3:
+                break
+
+    if user == 2:
+        while True:
+
+            print()
+
+            choice = Finance.menu_finance()
+
+            if choice == 7:
                 break
 
     if user == 6:
