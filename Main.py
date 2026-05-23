@@ -25,10 +25,24 @@ while True:
 
             if choice == 1:
                 Inscriptions.add_participant()
+
             if choice == 2:
-                for inscritos in Inscriptions.participants:
-                        print(inscritos, end='\n')
+                if not Inscriptions.inscriptions_list :
+                    print("Nao ha inscritos.")
+                else:
+                    for inscritos in Inscriptions.inscriptions_list:
+                            print(inscritos, end='\n')
+
             if choice == 3:
+                if not Inscriptions.inscriptions_list:
+                    print("Nao ha inscritos.")
+                else:
+                    Inscriptions.user_deletion()
+
+            if choice == 4:
+                Inscriptions.search_box()
+
+            if choice == 5:
                 break
 
     if user == 2:
