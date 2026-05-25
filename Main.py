@@ -1,3 +1,5 @@
+from sys import excepthook
+
 import Inscriptions
 import Finance
 
@@ -12,48 +14,51 @@ while True:
 
     print()
 
-    user = int(input("Selecione a opcao desejada: "))
+    try:
+        user = int(input("Selecione a opcao desejada: "))
 
-    print()
+        print()
 
-    if user == 1:
-        while True:
+        if user == 1:
+            while True:
 
-            print()
+                print()
 
-            choice = Inscriptions.menu()
+                choice = Inscriptions.menu()
 
-            if choice == 1:
-                Inscriptions.add_participant()
+                if choice == 1:
+                    Inscriptions.add_participant()
 
-            if choice == 2:
-                if not Inscriptions.inscriptions_list :
-                    print("Nao ha inscritos.")
-                else:
-                    for inscritos in Inscriptions.inscriptions_list:
-                            print(inscritos, end='\n')
+                if choice == 2:
+                    if not Inscriptions.inscriptions_list :
+                        print("Nao ha inscritos.")
+                    else:
+                        for inscritos in Inscriptions.inscriptions_list:
+                                print(inscritos, end='\n')
 
-            if choice == 3:
-                if not Inscriptions.inscriptions_list:
-                    print("Nao ha inscritos.")
-                else:
-                    Inscriptions.user_deletion()
+                if choice == 3:
+                    if not Inscriptions.inscriptions_list:
+                        print("Nao ha inscritos.")
+                    else:
+                        Inscriptions.user_deletion()
 
-            if choice == 4:
-                Inscriptions.search_box()
+                if choice == 4:
+                    Inscriptions.search_box()
 
-            if choice == 5:
-                break
+                if choice == 5:
+                    break
 
-    if user == 2:
-        while True:
+        if user == 2:
+            while True:
 
-            print()
+                print()
 
-            choice = Finance.menu_finance()
+                choice = Finance.menu_finance()
 
-            if choice == 7:
-                break
+                if choice == 7:
+                    break
 
-    if user == 6:
-        break
+        if user == 6:
+            break
+    except ValueError:
+        print("Digite um numero valido.")

@@ -12,6 +12,9 @@ def menu_finance():
     print()
 
     print("Para sair aperte a tecla 7")
-    user_input = int(input())
 
-    return user_input
+    try:
+        user_input = int(input())
+        return user_input
+    except ValueError:
+        print("Digite um numero valido.")

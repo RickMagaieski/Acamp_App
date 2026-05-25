@@ -9,8 +9,8 @@ inscriptions_list = [{'name': 'henrique magaieski', 'age': 22, 'phone': '2404742
 def add_participant():
 
     name_inpt = input("Nome Completo: ").lower()
-    age_inpt = int(input("Idade: "))
-    phone_inpt = (input("Telefone: "))
+    age_inpt = input("Idade: ")
+    phone_inpt = input("Telefone: ")
     medical_inpt = input("Condicao Medica/Alergias: ").lower()
     transportation = input("Precisa de ajuda para o transporte? ").lower()
     email = input("Digite o seu e-mail: ")
@@ -35,9 +35,11 @@ def menu():
 
     print()
 
-    user_inpt = int(input())
-
-    return user_inpt
+    try:
+        user_inpt = int(input())
+        return user_inpt
+    except ValueError:
+        print("Digite um numero valido.")
 
 def user_deletion():
 
@@ -62,28 +64,32 @@ def user_deletion():
         print("Essa pessoa nao esta na lista.")
 
 def search_box():
+    while True:
 
-    user = input("Busca: ").lower()
-    counter = 0
-    found = False
+        print()
+        user = input("Busca (para sair digite 's'): ").lower()
 
-    print("Inscricao Encontrada:")
+        if user == 's':
+            break
 
-    print()
+        counter = 0
+        found = False
 
-    while counter < len(inscriptions_list):
+        print()
 
-        person = inscriptions_list[counter]['name']
+        while counter < len(inscriptions_list):
 
-        if user in person:
+            person = inscriptions_list[counter]['name']
 
-            print(inscriptions_list[counter])
+            if user in person:
 
-            found = True
-            counter += 1
+                print(inscriptions_list[counter])
 
-        else:
-            counter += 1
+                found = True
+                counter += 1
 
-    if not found:
-        print("This person is not listed.")
+            else:
+                counter += 1
+
+        if not found:
+            print("This person is not listed.")
