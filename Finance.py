@@ -7,7 +7,8 @@ def menu_finance():
 
     print()
 
-    print("Valor da Inscricao: $140,00\nValor de Sabado apenas: $50,00\nInscricao com RV: 180,00\nCamiseta: $30,00\nInscricao Infantil: $90,00")
+    print("Valor da Inscricao (Adulto - 14+): $135,50\nValor de Sabado apenas: $55,00\nInscricao com RV: 145,00"
+          "\nInscricao Infantil: $67,75\nSomente Sabado Infantil: $27,50")
 
     print()
 

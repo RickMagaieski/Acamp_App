@@ -1,10 +1,4 @@
-inscriptions_list = [{'name': 'henrique magaieski', 'age': 22, 'phone': '2404742543',
-                      'medical': 'antialergics', 'transportation': 'no', 'e-mail' : 'henrimagaieski@icloud.com'},
-                     {'name': 'arthur', 'age': 22, 'phone': '2404742543', 'medical': 'polen', 'transportation': 'no',
-                      'e-mail': 'something@icloud.com'},
-                     {'name': 'henrique silva', 'age': 24, 'phone': '2404742543',
-                      'medical': 'None', 'transportation': 'no', 'e-mail': 'henrimagaieski@icloud.com'}
-                     ]
+inscriptions_list = []
 
 def add_participant():
 
@@ -13,7 +7,11 @@ def add_participant():
     phone_inpt = input("Telefone: ")
     medical_inpt = input("Condicao Medica/Alergias: ").lower()
     transportation = input("Precisa de ajuda para o transporte? ").lower()
-    email = input("Digite o seu e-mail: ")
+    email_input = input("Digite o seu e-mail: ")
+    shirt_size = input("Digite o tamanho de sua camista: ")
+    accommodation_input = input("Qual sera o tipo de acomodacao (RV/Barraca/Cabine)? ")
+    inscription_type = input("Qual sera o tipo de inscricao (Individual/Grupo/Familia)? ")
+    food_input = input("Come carne? ")
 
     participant = {
         "name": name_inpt,
@@ -21,7 +19,11 @@ def add_participant():
         "phone": phone_inpt,
         "medical": medical_inpt,
         "transportation": transportation,
-        "e-mail": email
+        "e-mail": email_input,
+        "shirt": shirt_size,
+        "accommodation" : accommodation_input,
+        "inscription" : inscription_type,
+        "food" : food_input
     }
 
     inscriptions_list.append(participant)
@@ -31,7 +33,7 @@ def menu():
 
     print()
 
-    print("1. Inscrever Alguem\n2. Lista dos Inscritos\n3. Deletar nome\n4. Search \n5. Sair")
+    print("1. Inscrever Alguem\n2. Lista dos Inscritos\n3. Deletar nome\n4. Search\n5. Sair")
 
     print()
 
