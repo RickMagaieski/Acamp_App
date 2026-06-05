@@ -1,7 +1,7 @@
 init_balance = 3.000
 camp_price = 140
 
-def menu_finance():
+def general_values():
 
     print("==== Valores Gerais ====")
 
@@ -19,3 +19,20 @@ def menu_finance():
         return user_input
     except ValueError:
         print("Digite um numero valido.")
+
+def menu():
+    print("===== FINANCAS =====")
+
+    print()
+
+    print("1. Tabela de Precos\n2. Contabilidade Geral\n3. Pagamentos\n4. Sair")
+
+    print()
+
+    try:
+        user_inpt = int(input())
+        return user_inpt
+    except ValueError:
+        print("Digite um numero valido.")
+
+#def payments():

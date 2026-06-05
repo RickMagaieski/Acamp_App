@@ -2,16 +2,17 @@ inscriptions_list = []
 
 def add_participant():
 
-    name_inpt = input("Nome Completo: ").lower()
-    age_inpt = input("Idade: ")
-    phone_inpt = input("Telefone: ")
-    medical_inpt = input("Condicao Medica/Alergias: ").lower()
-    transportation = input("Precisa de ajuda para o transporte? ").lower()
-    email_input = input("Digite o seu e-mail: ")
-    shirt_size = input("Digite o tamanho de sua camista: ")
-    accommodation_input = input("Qual sera o tipo de acomodacao (RV/Barraca/Cabine)? ")
-    inscription_type = input("Qual sera o tipo de inscricao (Individual/Grupo/Familia)? ")
-    food_input = input("Come carne? ")
+    name_inpt = input("Nome Completo: ").lower().strip()
+    age_inpt = input("Idade: ").strip()
+    phone_inpt = input("Telefone: ").strip()
+    medical_inpt = input("Condicao Medica/Alergias: ").lower().strip()
+    transportation = input("Precisa de ajuda para o transporte? ").lower().strip()
+    email_input = input("Digite o seu e-mail: ").strip()
+    shirt_size = input("Digite o tamanho de sua camista: ").lower().strip()
+    accommodation_input = input("Qual sera o tipo de acomodacao (RV/Barraca/Cabine)? ").strip()
+    inscription_type = input("Qual sera o tipo de inscricao (Individual/Grupo/Familia)? ").strip()
+    payment_input = input("Valor pago: ").strip()
+    food_input = input("Come carne? ").strip()
 
     participant = {
         "name": name_inpt,
@@ -23,7 +24,8 @@ def add_participant():
         "shirt": shirt_size,
         "accommodation" : accommodation_input,
         "inscription" : inscription_type,
-        "food" : food_input
+        "payment" : payment_input,
+         "food" : food_input
     }
 
     inscriptions_list.append(participant)
@@ -45,7 +47,7 @@ def menu():
 
 def user_deletion():
 
-    user = input("Nome que deseja deletar: ").lower()
+    user = input("Nome que deseja deletar: ").lower().strip()
     counter = 0
     found = False
 
@@ -94,4 +96,4 @@ def search_box():
                 counter += 1
 
         if not found:
-            print("This person is not listed.")
+            print("Esta pessoa nao esta listada.")

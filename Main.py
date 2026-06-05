@@ -53,9 +53,12 @@ while True:
 
                 print()
 
-                choice = Finance.menu_finance()
+                choice = Finance.menu()
 
-                if choice == 7:
+                if choice == 3:
+                    Finance.payments()
+
+                if choice == 4:
                     break
 
         if user == 6:
