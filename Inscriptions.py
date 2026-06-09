@@ -1,4 +1,39 @@
-inscriptions_list = []
+inscriptions_list = [{
+    "name": "lucas oliveira",
+    "age": "18",
+    "phone": "2405551234",
+    "medical": "alergia a amendoim",
+    "transportation": "sim",
+    "email": "lucas.oliveira@email.com",
+    "shirt_size": "m",
+    "accommodation": "barraca",
+    "inscription": "sabado",
+    "payment": 55.00,
+    "food": "sim"},
+    {
+    "name": "ana santos",
+    "age": "21",
+    "phone": "3015559876",
+    "medical": "nenhuma",
+    "transportation": "nao",
+    "email": "ana.santos@email.com",
+    "shirt_size": "p",
+    "accommodation": "cabine",
+    "inscription": "adulto",
+    "payment": 135.00,
+    "food": "nao"},
+    {
+    "name": "pedro almeida",
+    "age": "16",
+    "phone": "4435556789",
+    "medical": "asma",
+    "transportation": "sim",
+    "email": "pedro.almeida@email.com",
+    "shirt_size": "g",
+    "accommodation": "rv",
+    "inscription": "adulto",
+    "payment": 100.00,
+    "food": "sim"}]
 
 def add_participant():
 
@@ -10,8 +45,8 @@ def add_participant():
     email_input = input("Digite o seu e-mail: ").strip()
     shirt_size = input("Digite o tamanho de sua camista: ").lower().strip()
     accommodation_input = input("Qual sera o tipo de acomodacao (RV/Barraca/Cabine)? ").strip()
-    inscription_type = input("Qual sera o tipo de inscricao (Individual/Grupo/Familia)? ").strip()
-    payment_input = input("Valor pago: ").strip()
+    inscription_type = input("Qual sera o tipo de inscricao (RV/Adulto/Infantil/Sabado Infantil/Sabado)? ").strip().lower()
+    payment_input = float(input("Valor pago: "))
     food_input = input("Come carne? ").strip()
 
     participant = {
@@ -67,10 +102,11 @@ def user_deletion():
     if not found:
         print("Essa pessoa nao esta na lista.")
 
+    print()
+
 def search_box():
     while True:
 
-        print()
         user = input("Busca (para sair digite 's'): ").lower()
 
         if user == 's':
@@ -97,3 +133,5 @@ def search_box():
 
         if not found:
             print("Esta pessoa nao esta listada.")
+
+    print()

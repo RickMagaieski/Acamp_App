@@ -1,5 +1,3 @@
-from sys import excepthook
-
 import Inscriptions
 import Finance
 
@@ -22,7 +20,6 @@ while True:
         if user == 1:
             while True:
 
-                print()
 
                 choice = Inscriptions.menu()
 
@@ -35,6 +32,7 @@ while True:
                     else:
                         for inscritos in Inscriptions.inscriptions_list:
                                 print(inscritos, end='\n')
+                        print()
 
                 if choice == 3:
                     if not Inscriptions.inscriptions_list:
@@ -54,6 +52,12 @@ while True:
                 print()
 
                 choice = Finance.menu()
+
+                if choice == 1:
+                    Finance.general_values()
+
+                if choice == 2:
+                    Finance.account()
 
                 if choice == 3:
                     Finance.payments()
