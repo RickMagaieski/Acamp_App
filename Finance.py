@@ -73,12 +73,13 @@ def payments():
 
 def account():
     from Inscriptions import inscriptions_list
+    from Inventory import list_inventory
 
-    init_balance = 3.700
+    init_balance = 3700.00
     total_profit = 0
     total_loss = 0
 
-    print(f"Balanco Inicial: {init_balance:.3f}")
+    print(f"Balanco Inicial: {init_balance:.2f}")
     print()
 
     print("Entradas:")
@@ -92,6 +93,17 @@ def account():
 
     print()
 
-    print("Total Saidas: ")
+    print("Saidas:")
+    for saidas in list_inventory:
+        print(f"$-{saidas['value']:.2f}")
 
-    print("Balanco Final: {init_balance - total_loss + total_entries}")
+        total_loss += saidas['value']
+
+    print()
+    print(f"Total Saidas: $-{total_loss:.2f}")
+
+    print()
+
+    print(f"Total: {init_balance + total_profit - total_loss:.2f}")
+
+    print()
