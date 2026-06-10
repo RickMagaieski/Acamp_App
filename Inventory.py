@@ -30,7 +30,7 @@ def menu():
 
     print()
 
-    print("1. Adicionar Item\n2. Acessar Inventario\n3. Remover item\n4. Sair")
+    print("1. Adicionar Item\n2. Acessar Inventario\n3. Remover item\n4. Procurar item\n5. Sair")
 
     print()
 
@@ -63,5 +63,39 @@ def remove_items():
 
     if not found:
         print("Este item nao esta na lista...")
+
+    print()
+
+def search():
+    while True:
+
+        user = input("Buscar item (para sair digite s): ").lower().strip()
+
+        if user == 's':
+            break
+
+        counter = 0
+        found = False
+
+        print()
+
+        while counter < len(list_inventory):
+
+            item = list_inventory[counter]['item']
+
+            if user in item:
+                print(list_inventory[counter])
+
+                found = True
+                counter += 1
+
+                print()
+            else:
+                counter += 1
+
+        if not found:
+            print("Este item nao esta listado")
+
+            print()
 
     print()

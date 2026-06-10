@@ -90,6 +90,9 @@ while True:
                         Inventory.remove_items()
 
                 if choice == 4:
+                    Inventory.search()
+
+                if choice == 5:
                     break
 
         if user == 5:
