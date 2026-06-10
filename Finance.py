@@ -9,14 +9,6 @@ def general_values():
 
     print()
 
-    print("Para sair aperte a tecla 7")
-
-    try:
-        user_input = int(input())
-        return user_input
-    except ValueError:
-        print("Digite um numero valido.")
-
 def menu():
     print("===== FINANCAS =====")
 
@@ -82,7 +74,7 @@ def payments():
 def account():
     from Inscriptions import inscriptions_list
 
-    init_balance = 3.000
+    init_balance = 3.700
     total_profit = 0
     total_loss = 0
 
