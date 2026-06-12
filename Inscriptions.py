@@ -107,9 +107,9 @@ def user_deletion():
 def search_box():
     while True:
 
-        user = int(input("Busca (para sair digite 7): "))
+        user = input("Busca (para sair digite 's'): ").strip().lower()
 
-        if user == 7:
+        if user == 's':
             break
 
         counter = 0
@@ -133,5 +133,7 @@ def search_box():
 
         if not found:
             print("Esta pessoa nao esta listada.")
+
+        print()
 
     print()
