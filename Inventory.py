@@ -2,6 +2,8 @@ list_inventory = []
 
 def add_inventory():
 
+    import Database
+
     item_input = input("Digite o nome do item: ").lower().strip()
     value_input = float(input("Digite o valor do item: "))
     quantity_input = int(input("Digite a quantidade: "))
@@ -15,6 +17,7 @@ def add_inventory():
     }
 
     list_inventory.append(items)
+    Database.data_item(list_inventory)
 
     print()
 
@@ -38,6 +41,8 @@ def menu():
 
 def remove_items():
 
+    import Database
+
     user = input("Nome completo do item: ").lower().strip()
 
     counter = 0
@@ -50,6 +55,7 @@ def remove_items():
         if item == user:
             del list_inventory[counter]
             found = True
+            Database.data_item(list_inventory)
 
             print("Item removido com sucesso!")
             break

@@ -74,8 +74,6 @@ def user_deletion():
     if not found:
         print("Esta pessoa não está na lista.")
 
-    print()
-
 def search_box():
     while True:
 

@@ -4,6 +4,7 @@ import Inventory
 import Database
 
 Inscriptions.inscriptions_list = Database.open_data()
+Inventory.list_inventory = Database.data_item_load()
 
 while True:
     print()
