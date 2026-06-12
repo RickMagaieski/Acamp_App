@@ -16,9 +16,9 @@ def add_inventory():
 
     list_inventory.append(items)
 
-    print("Item adicionado com sucesso!")
-
     print()
+
+    print("Item adicionado com sucesso!")
 
 def menu():
     print("===== INVENTÁRIO =====")
@@ -60,38 +60,34 @@ def remove_items():
     if not found:
         print("Este item não está na lista.")
 
-    print()
-
 def search():
     while True:
 
-        user = input("Buscar item (para sair digite s): ").lower().strip()
+        if list_inventory:
+            user = input("Buscar item (para sair digite s): ").lower().strip()
 
-        if user == 's':
+            if user == 's':
+                break
+
+            counter = 0
+            found = False
+
+            while counter < len(list_inventory):
+
+                item = list_inventory[counter]['item']
+
+                if user in item:
+                    print(list_inventory[counter])
+
+                    found = True
+                    counter += 1
+
+                else:
+                    counter += 1
+
+            if not found:
+                print("Este item não está na lista.")
+
+        else:
+            print("A lista está vazia.")
             break
-
-        counter = 0
-        found = False
-
-        print()
-
-        while counter < len(list_inventory):
-
-            item = list_inventory[counter]['item']
-
-            if user in item:
-                print(list_inventory[counter])
-
-                found = True
-                counter += 1
-
-                print()
-            else:
-                counter += 1
-
-        if not found:
-            print("Este item não está na lista.")
-
-            print()
-
-    print()

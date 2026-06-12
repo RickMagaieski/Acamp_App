@@ -79,33 +79,35 @@ def user_deletion():
 def search_box():
     while True:
 
-        user = input("Busca (para sair digite 's'): ").strip().lower()
+        if inscriptions_list:
+            user = input("Busca (para sair digite 's'): ").strip().lower()
 
-        if user == 's':
+            if user == 's':
+                break
+
+            counter = 0
+            found = False
+
+            print()
+
+            while counter < len(inscriptions_list):
+
+                person = inscriptions_list[counter]['name']
+
+                if user in person:
+
+                    print(inscriptions_list[counter])
+
+                    found = True
+                    counter += 1
+
+                else:
+                    counter += 1
+
+            if not found:
+                print("Esta pessoa não está na lista.")
+
+            print()
+        else:
+            print("A lista está vazia")
             break
-
-        counter = 0
-        found = False
-
-        print()
-
-        while counter < len(inscriptions_list):
-
-            person = inscriptions_list[counter]['name']
-
-            if user in person:
-
-                print(inscriptions_list[counter])
-
-                found = True
-                counter += 1
-
-            else:
-                counter += 1
-
-        if not found:
-            print("Esta pessoa não está na lista.")
-
-        print()
-
-    print()

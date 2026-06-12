@@ -19,11 +19,10 @@ while True:
     try:
         user = int(input("Selecione a opção desejada: "))
 
-        print()
-
         if user == 1:
             while True:
 
+                print()
                 choice = Inscriptions.menu()
 
                 if choice == 1:
@@ -32,14 +31,15 @@ while True:
                 if choice == 2:
                     if not Inscriptions.inscriptions_list :
                         print("Não há inscritos.")
+
                     else:
                         for inscritos in Inscriptions.inscriptions_list:
                                 print(inscritos, end='\n')
-                        print()
 
                 if choice == 3:
                     if not Inscriptions.inscriptions_list:
                         print("Não há inscritos.")
+
                     else:
                         Inscriptions.user_deletion()
 
@@ -53,7 +53,6 @@ while True:
             while True:
 
                 print()
-
                 choice = Finance.menu()
 
                 if choice == 1:
@@ -67,9 +66,11 @@ while True:
 
                 if choice == 4:
                     break
+
         if user == 3:
             while True:
 
+                print()
                 choice = Inventory.menu()
 
                 if choice == 1:
@@ -77,18 +78,16 @@ while True:
 
                 if choice == 2:
                     if not Inventory.list_inventory:
-                        print("Não há itens!")
-
-                        print()
+                        print("A lista está vazia.")
 
                     else:
                         for lista in Inventory.list_inventory:
                             print(lista, end='\n')
-                        print()
 
                 if choice == 3:
                     if not Inventory.list_inventory:
                         print("O inventário está vazio.")
+
                     else:
                         Inventory.remove_items()
 
@@ -102,3 +101,5 @@ while True:
             break
     except ValueError:
         print("Insira um número válido.")
+
+        print()
