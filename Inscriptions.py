@@ -1,51 +1,18 @@
-inscriptions_list = [{
-    "name": "lucas oliveira",
-    "age": "18",
-    "phone": "2405551234",
-    "medical": "alergia a amendoim",
-    "transportation": "sim",
-    "email": "lucas.oliveira@email.com",
-    "shirt_size": "m",
-    "accommodation": "barraca",
-    "inscription": "sabado",
-    "payment": 55.00,
-    "food": "sim"},
-    {
-    "name": "ana santos",
-    "age": "21",
-    "phone": "3015559876",
-    "medical": "nenhuma",
-    "transportation": "nao",
-    "email": "ana.santos@email.com",
-    "shirt_size": "p",
-    "accommodation": "cabine",
-    "inscription": "adulto",
-    "payment": 135.00,
-    "food": "nao"},
-    {
-    "name": "pedro almeida",
-    "age": "16",
-    "phone": "4435556789",
-    "medical": "asma",
-    "transportation": "sim",
-    "email": "pedro.almeida@email.com",
-    "shirt_size": "g",
-    "accommodation": "rv",
-    "inscription": "adulto",
-    "payment": 100.00,
-    "food": "sim"}]
+inscriptions_list = []
 
 def add_participant():
+
+    import Database
 
     name_inpt = input("Nome Completo: ").lower().strip()
     age_inpt = input("Idade: ").strip()
     phone_inpt = input("Telefone: ").strip()
-    medical_inpt = input("Condicao Medica/Alergias: ").lower().strip()
+    medical_inpt = input("Condição médica/Alergias: ").lower().strip()
     transportation = input("Precisa de ajuda para o transporte? ").lower().strip()
     email_input = input("Digite o seu e-mail: ").strip()
-    shirt_size = input("Digite o tamanho de sua camista: ").lower().strip()
-    accommodation_input = input("Qual sera o tipo de acomodacao (RV/Barraca/Cabine)? ").strip()
-    inscription_type = input("Qual sera o tipo de inscricao (RV/Adulto/Infantil/Sabado Infantil/Sabado)? ").strip().lower()
+    shirt_size = input("Digite o tamanho de sua camiseta: ").lower().strip()
+    accommodation_input = input("Que tipo de acomodação será (RV/Barraca/Cabine)? ").strip()
+    inscription_type = input("Que tipo de inscrição será (RV/Adulto/Infantil/Sábado Infantil/Sábado)? ").strip().lower()
     payment_input = float(input("Valor pago: "))
     food_input = input("Come carne? ").strip()
 
@@ -64,13 +31,14 @@ def add_participant():
     }
 
     inscriptions_list.append(participant)
+    Database.save_data(inscriptions_list)
 
 def menu():
     print("===== INSCRIÇÕES =====")
 
     print()
 
-    print("1. Inscrever Alguem\n2. Lista dos Inscritos\n3. Deletar nome\n4. Search\n5. Sair")
+    print("1. Inscrever alguém\n2. Lista de Inscritos\n3. Deletar nome\n4. Pesquisa\n5. Sair")
 
     print()
 
@@ -78,9 +46,11 @@ def menu():
         user_inpt = int(input())
         return user_inpt
     except ValueError:
-        print("Digite um numero valido.")
+        print("Insira um número válido.")
 
 def user_deletion():
+
+    import Database
 
     user = input("Nome que deseja deletar: ").lower().strip()
     counter = 0
@@ -93,14 +63,16 @@ def user_deletion():
         if person == user:
             del inscriptions_list[counter]
             found = True
-            print(f"Inscricao de {person} removida")
+            Database.save_data(inscriptions_list)
+
+            print(f"Inscrição de {person} removida")
 
             break
         else:
             counter += 1
 
     if not found:
-        print("Essa pessoa nao esta na lista.")
+        print("Esta pessoa não está na lista.")
 
     print()
 
@@ -132,7 +104,7 @@ def search_box():
                 counter += 1
 
         if not found:
-            print("Esta pessoa nao esta listada.")
+            print("Esta pessoa não está na lista.")
 
         print()
 

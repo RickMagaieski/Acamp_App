@@ -1,16 +1,11 @@
-list_inventory = [{
-    'item': 'trofeu oscar',
-    'quantity': 10,
-    'value': 101.50,
-    'description': 'Premiacoes para os vencedores das encenacoes.'
-}]
+list_inventory = []
 
 def add_inventory():
 
     item_input = input("Digite o nome do item: ").lower().strip()
     value_input = float(input("Digite o valor do item: "))
     quantity_input = int(input("Digite a quantidade: "))
-    description_input = input("Descricao/Detalhes: ").lower().strip()
+    description_input = input("Descrição/Detalhes: ").lower().strip()
 
     items = {
         'item': item_input,
@@ -26,11 +21,11 @@ def add_inventory():
     print()
 
 def menu():
-    print("===== INVETARIO =====")
+    print("===== INVENTÁRIO =====")
 
     print()
 
-    print("1. Adicionar Item\n2. Acessar Inventario\n3. Remover item\n4. Procurar item\n5. Sair")
+    print("1. Adicionar Item\n2. Acessar inventário\n3. Remover item\n4. Procurar item\n5. Sair")
 
     print()
 
@@ -39,7 +34,7 @@ def menu():
         return user_input
 
     except ValueError:
-        print("Digite um numero valido")
+        print("Insira um número válido.")
 
 def remove_items():
 
@@ -63,7 +58,7 @@ def remove_items():
             counter += 1
 
     if not found:
-        print("Este item nao esta na lista...")
+        print("Este item não está na lista.")
 
     print()
 
@@ -95,7 +90,7 @@ def search():
                 counter += 1
 
         if not found:
-            print("Este item nao esta listado")
+            print("Este item não está na lista.")
 
             print()
 

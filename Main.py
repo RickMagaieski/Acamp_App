@@ -1,20 +1,23 @@
 import Inscriptions
 import Finance
 import Inventory
+import Database
+
+Inscriptions.inscriptions_list = Database.open_data()
 
 while True:
     print()
 
-    print("======= Acamp WBSDAC 2026 Menu =======")
+    print("======= ACAMP WBSDAC 2026 MENU =======")
 
     print()
 
-    print("1. Inscricoes\n2. Financas\n3. Inventario\n4. Atividades\n5. Sair")
+    print("1. Inscrição\n2. Finanças\n3. Inventário\n4. Atividades\n5. Sair")
 
     print()
 
     try:
-        user = int(input("Selecione a opcao desejada: "))
+        user = int(input("Selecione a opção desejada: "))
 
         print()
 
@@ -28,7 +31,7 @@ while True:
 
                 if choice == 2:
                     if not Inscriptions.inscriptions_list :
-                        print("Nao ha inscritos.")
+                        print("Não há inscritos.")
                     else:
                         for inscritos in Inscriptions.inscriptions_list:
                                 print(inscritos, end='\n')
@@ -36,7 +39,7 @@ while True:
 
                 if choice == 3:
                     if not Inscriptions.inscriptions_list:
-                        print("Nao ha inscritos.")
+                        print("Não há inscritos.")
                     else:
                         Inscriptions.user_deletion()
 
@@ -74,7 +77,7 @@ while True:
 
                 if choice == 2:
                     if not Inventory.list_inventory:
-                        print("Nao ha itens!")
+                        print("Não há itens!")
 
                         print()
 
@@ -85,7 +88,7 @@ while True:
 
                 if choice == 3:
                     if not Inventory.list_inventory:
-                        print("O inventario esta vazio.")
+                        print("O inventário está vazio.")
                     else:
                         Inventory.remove_items()
 
@@ -98,4 +101,4 @@ while True:
         if user == 5:
             break
     except ValueError:
-        print("Digite um numero valido.")
+        print("Insira um número válido.")

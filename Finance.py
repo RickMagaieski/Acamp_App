@@ -1,20 +1,20 @@
 def general_values():
 
-    print("==== Valores Gerais ====")
+    print("==== VALORES GERAIS ====")
 
     print()
 
-    print("Valor da Inscricao (Adulto - 14+): $135.00\nValor de Sabado apenas: $55.00\nInscricao com RV: 145.00"
-          "\nInscricao Infantil: $67.75\nSomente Sabado Infantil: $27.50")
+    print("Taxa de inscrição (Adulto - 14+): $135.00\nValor de Sábado apenas: $55.00\nInscrição com RV: 145.00"
+          "\nCadastro da Infantil: $67.75\nSomente Sábado Infantil: $27.50")
 
     print()
 
 def menu():
-    print("===== FINANCAS =====")
+    print("===== FINANÇAS =====")
 
     print()
 
-    print("1. Tabela de Precos\n2. Contabilidade Geral\n3. Pagamentos\n4. Sair")
+    print("1. Lista de Preços\n2. Contabilidade Geral\n3. Pagamentos\n4. Sair")
 
     print()
 
@@ -22,7 +22,7 @@ def menu():
         user_inpt = int(input())
         return user_inpt
     except ValueError:
-        print("Digite um numero valido.")
+        print("Insira um número válido.")
 
 def payments():
     from Inscriptions import inscriptions_list
@@ -79,7 +79,7 @@ def account():
     total_profit = 0
     total_loss = 0
 
-    print(f"Balanco Inicial: {init_balance:.2f}")
+    print(f"Saldo Inicial: {init_balance:.2f}")
     print()
 
     print("Entradas:")
@@ -93,17 +93,17 @@ def account():
 
     print()
 
-    print("Saidas:")
+    print("Saídas:")
     for saidas in list_inventory:
         print(f"$-{saidas['value']:.2f}")
 
         total_loss += saidas['value']
 
     print()
-    print(f"Total Saidas: $-{total_loss:.2f}")
+    print(f"Total Saídas: $-{total_loss:.2f}")
 
     print()
 
-    print(f"Total: {init_balance + total_profit - total_loss:.2f}")
+    print(f"Total Final: {init_balance + total_profit - total_loss:.2f}")
 
     print()
