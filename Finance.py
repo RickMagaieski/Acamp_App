@@ -4,8 +4,8 @@ def general_values():
 
     print()
 
-    print("Valor da Inscricao (Adulto - 14+): $135,50\nValor de Sabado apenas: $55,00\nInscricao com RV: 145,00"
-          "\nInscricao Infantil: $67,75\nSomente Sabado Infantil: $27,50")
+    print("Valor da Inscricao (Adulto - 14+): $135.00\nValor de Sabado apenas: $55.00\nInscricao com RV: 145.00"
+          "\nInscricao Infantil: $67.75\nSomente Sabado Infantil: $27.50")
 
     print()
 
@@ -29,28 +29,28 @@ def payments():
 
     for person in inscriptions_list:
 
-            print(f"{person["name"]}: ${person['payment']:.2f} - {person["inscription"]}")
+            print(f"{person['name']}: ${person['payment']:.2f} - {person['inscription']}")
 
             if person['inscription'] == 'adulto':
                 if person['payment'] == 135.00:
                     print("(Pago!)")
-                elif person['payment'] > 0.00 < 135.00:
+                elif 135.00 > person['payment'] > 0.00:
                     print(f"(Parcial... ${135.00 - person['payment']:.2f})")
                 elif person['payment'] == 0.00:
                     print("(Pendente!)")
 
             if person['inscription'] == 'infantil':
-                if person['payment'] == 67.50:
+                if person['payment'] == 67.75:
                     print("(Pago!)")
-                elif person['payment'] > 0.00 < 67.50:
-                    print(f"(Parcial... ${67.50 - person['payment']:.2f})")
+                elif 67.75 > person['payment'] > 0.00:
+                    print(f"(Parcial... ${67.75 - person['payment']:.2f})")
                 elif person['payment'] == 0.00:
                     print("(Pendente!)")
 
             if person['inscription'] == 'rv':
                 if person['payment'] == 145.00:
                     print("(Pago!)")
-                elif person['payment'] > 0.00  < 145.00:
+                elif 145.00 > person['payment'] > 0.00:
                     print(f"(Parcial... ${145.00 - person['payment']:.2f})")
                 elif person['payment'] == 0.00:
                     print("(Pendente!)")
@@ -58,7 +58,7 @@ def payments():
             if person['inscription'] == 'sabado':
                 if person['payment'] == 55.00:
                     print("(Pago!)")
-                elif person['payment'] > 0.00  < 55.00:
+                elif 55.00 > person['payment'] > 0.00:
                     print(f"(Parcial... ${55.00 - person['payment']:.2f})")
                 elif person['payment'] == 0.00:
                     print("(Pendente!)")
@@ -66,7 +66,7 @@ def payments():
             if person['inscription'] == 'sabado infantil':
                 if person['payment'] == 27.50:
                     print("(Pago!)")
-                elif person['payment'] > 0.00 < 27.50:
+                elif 27.50 > person['payment'] > 0.00:
                     print(f"(Parcial... ${27.50 - person['payment']:.2f})")
                 elif person['payment'] == 0.00:
                     print("(Pendente!)")

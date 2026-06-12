@@ -57,6 +57,7 @@ def remove_items():
             found = True
 
             print("Item removido com sucesso!")
+            break
 
         else:
             counter += 1

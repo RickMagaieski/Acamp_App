@@ -55,7 +55,7 @@ def add_participant():
         "phone": phone_inpt,
         "medical": medical_inpt,
         "transportation": transportation,
-        "e-mail": email_input,
+        "email": email_input,
         "shirt": shirt_size,
         "accommodation" : accommodation_input,
         "inscription" : inscription_type,
