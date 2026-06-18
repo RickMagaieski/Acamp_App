@@ -13,7 +13,7 @@ while True:
 
     print()
 
-    print("1. Inscrição\n2. Finanças\n3. Inventário\n4. Atividades\n5. Sair")
+    print("1. Inscrição\n2. Finanças\n3. Inventário\n4. Atividades\n5. Reports\n6. Sair")
 
     print()
 
@@ -98,7 +98,7 @@ while True:
                 if choice == 5:
                     break
 
-        if user == 5:
+        if user == 6:
             break
     except ValueError:
         print("Insira um número válido.")
