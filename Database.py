@@ -16,7 +16,7 @@ def open_data():
         return[]
 
     except json.JSONDecodeError:
-        return []
+        return[]
 
 
 def data_item(item_data):

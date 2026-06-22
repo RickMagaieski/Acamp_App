@@ -25,10 +25,10 @@ def menu():
         print("Insira um número válido.")
 
 def payments():
-    from Inscriptions import inscriptions_list
+    from GoogleSheets import inscriptions
 
-    if inscriptions_list:
-        for person in inscriptions_list:
+    if inscriptions:
+        for person in inscriptions:
 
                 print(f"{person['name']}: ${person['payment']:.2f} - {person['inscription']}")
 
@@ -40,7 +40,7 @@ def payments():
                     elif person['payment'] == 0.00:
                         print("(Pendente!)")
 
-                if person['inscription'] == 'infantil':
+                if person['inscription'] == 'criança':
                     if person['payment'] == 67.75:
                         print("(Pago!)")
                     elif 67.75 > person['payment'] > 0.00:
@@ -56,7 +56,7 @@ def payments():
                     elif person['payment'] == 0.00:
                         print("(Pendente!)")
 
-                if person['inscription'] == 'sabado':
+                if person['inscription'] == 'sábado adulto':
                     if person['payment'] == 55.00:
                         print("(Pago!)")
                     elif 55.00 > person['payment'] > 0.00:
@@ -64,7 +64,7 @@ def payments():
                     elif person['payment'] == 0.00:
                         print("(Pendente!)")
 
-                if person['inscription'] == 'sabado infantil':
+                if person['inscription'] == 'sábado infantil':
                     if person['payment'] == 27.50:
                         print("(Pago!)")
                     elif 27.50 > person['payment'] > 0.00:
@@ -75,7 +75,7 @@ def payments():
         print("A lista está vazia.")
 
 def account():
-    from Inscriptions import inscriptions_list
+    from GoogleSheets import inscriptions
     from Inventory import list_inventory
 
     init_balance = 3700.00
@@ -86,7 +86,7 @@ def account():
     print()
 
     print("Entradas:")
-    for amount in inscriptions_list:
+    for amount in inscriptions:
         print(f"${amount['payment']:.2f}")
 
         total_profit += amount['payment']

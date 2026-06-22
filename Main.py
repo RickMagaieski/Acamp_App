@@ -2,8 +2,9 @@ import Inscriptions
 import Finance
 import Inventory
 import Database
+import GoogleSheets
 
-Inscriptions.inscriptions_list = Database.open_data()
+GoogleSheets.inscriptions = Database.open_data()
 Inventory.list_inventory = Database.data_item_load()
 
 while True:
@@ -26,28 +27,28 @@ while True:
                 print()
                 choice = Inscriptions.menu()
 
-                if choice == 1:
-                    Inscriptions.add_participant()
+                """if choice == 1:
+                    Inscriptions.add_participant()"""
 
-                if choice == 2:
-                    if not Inscriptions.inscriptions_list :
+                if choice == 1:
+                    if not GoogleSheets.inscriptions:
                         print("Não há inscritos.")
 
                     else:
-                        for inscritos in Inscriptions.inscriptions_list:
-                                print(inscritos, end='\n')
+                        for var in GoogleSheets.inscriptions:
+                            print(var)
 
                 if choice == 3:
-                    if not Inscriptions.inscriptions_list:
+                    if not GoogleSheets.inscriptions:
                         print("Não há inscritos.")
 
                     else:
                         Inscriptions.user_deletion()
 
-                if choice == 4:
+                if choice == 2:
                     Inscriptions.search_box()
 
-                if choice == 5:
+                if choice == 4:
                     break
 
         if user == 2:
