@@ -4,7 +4,7 @@ import Inventory
 import Database
 import GoogleSheets
 
-GoogleSheets.inscriptions = Database.open_data()
+GoogleSheets.read_sheet_data()
 Inventory.list_inventory = Database.data_item_load()
 
 while True:
