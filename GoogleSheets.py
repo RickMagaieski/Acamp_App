@@ -63,11 +63,16 @@ def read_sheet_data():
     ).execute()
 
     values = result.get("values", [])
+    inscriptions.clear()
 
     for all in values[1:]:
 
+        first_name = all[0].strip()
+        last_name = all[1].strip()
+        full_name = f"{first_name} {last_name}".lower()
+
         participant = {
-            "name": f"{all[0]}{all[1]}".strip().lower(),
+            "name": full_name,
             "age": all[2],
             "phone": all[3],
             "medical": all[4],
@@ -76,10 +81,78 @@ def read_sheet_data():
             "accommodation": all[7].strip().lower(),
             "inscription": all[8].strip().lower(),
             "payment": float(all[9]) if all[9] else 0.00,
-            "food": all[10]
+            "food": all[10],
+            "id": all[13]
         }
 
         inscriptions.append(participant)
     Database.save_data(inscriptions)
 
     return inscriptions
+
+def delete(id):
+
+    service = connect_to_google_sheets()
+
+    result = service.spreadsheets().values().get(
+        spreadsheetId=SPREADSHEET_ID,
+        range=RANGE_NAME
+    ).execute()
+
+    values = result.get("values", [])
+
+    row_number = None
+
+    # Row 1 contains the column titles.
+    # Therefore, the first participant is on row 2.
+    for number, all in enumerate(values[1:], start=2):
+
+        if len(all) > 13 and str(all[13]).strip() == str(id).strip():
+            row_number = number
+            break
+
+    if row_number is None:
+        print("Participante não encontrado no Google Sheets.")
+        return False
+
+    # Gets the name of the tab from RANGE_NAME
+    sheet_name = RANGE_NAME.split("!")[0].strip("'")
+
+    spreadsheet = service.spreadsheets().get(
+        spreadsheetId=SPREADSHEET_ID,
+        fields="sheets.properties(sheetId,title)"
+    ).execute()
+
+    sheet_id = None
+
+    for sheet in spreadsheet["sheets"]:
+
+        if sheet["properties"]["title"] == sheet_name:
+            sheet_id = sheet["properties"]["sheetId"]
+            break
+
+    if sheet_id is None:
+        print("A página da planilha não foi encontrada.")
+        return False
+
+    request = {
+        "requests": [
+            {
+                "deleteDimension": {
+                    "range": {
+                        "sheetId": sheet_id,
+                        "dimension": "ROWS",
+                        "startIndex": row_number - 1,
+                        "endIndex": row_number
+                    }
+                }
+            }
+        ]
+    }
+
+    service.spreadsheets().batchUpdate(
+        spreadsheetId=SPREADSHEET_ID,
+        body=request
+    ).execute()
+
+    return True

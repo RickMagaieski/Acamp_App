@@ -29,6 +29,10 @@ def add_participant():
     }
 
     Database.save_data(inscription_list)"""
+from idlelib.mainmenu import default_keydefs
+
+from GoogleSheets import delete
+
 
 def menu():
     print("===== INSCRIÇÕES =====")
@@ -47,7 +51,7 @@ def menu():
 
 def user_deletion():
 
-    from GoogleSheets import inscriptions
+    from GoogleSheets import inscriptions, delete
     import Database
 
     user = input("Nome que deseja deletar: ").lower().strip()
@@ -59,13 +63,21 @@ def user_deletion():
         person = inscriptions[counter]["name"]
 
         if person == user:
-            del inscriptions[counter]
-            found = True
-            Database.save_data(inscriptions)
 
-            print(f"Inscrição de {person} removida")
+            person_id = inscriptions[counter]["id"]
+            deletion_from_sheet = delete(person_id)
+
+            if deletion_from_sheet:
+
+                del inscriptions[counter]
+                Database.save_data(inscriptions)
+
+                found = True
+
+                print(f"Inscrição de {person} removida")
 
             break
+
         else:
             counter += 1
 
