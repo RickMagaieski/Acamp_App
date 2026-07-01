@@ -21,6 +21,7 @@ def menu():
     try:
         user_inpt = int(input())
         return user_inpt
+
     except ValueError:
         print("Insira um número válido.")
 
@@ -71,6 +72,7 @@ def payments():
                         print(f"(Parcial... Deve: ${27.50 - person['payment']:.2f})")
                     elif person['payment'] == 0.00:
                         print("(Pendente!)")
+
     else:
         print("A lista está vazia.")
 

@@ -31,12 +31,14 @@ while True:
                     Inscriptions.add_participant()"""
 
                 if choice == 1:
+                    GoogleSheets.read_sheet_data()
+
                     if not GoogleSheets.inscriptions:
                         print("Não há inscritos.")
 
                     else:
-                        for var in GoogleSheets.inscriptions:
-                            print(var)
+                        for people in GoogleSheets.inscriptions:
+                            print(people)
 
                 if choice == 3:
                     if not GoogleSheets.inscriptions:
