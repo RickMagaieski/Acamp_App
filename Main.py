@@ -105,6 +105,7 @@ while True:
 
         if user == 6:
             break
+
     except ValueError:
         print("Insira um número válido.")
 
