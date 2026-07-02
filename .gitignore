@@ -2,6 +2,7 @@ token.json
 client_secret.json
 participants.json
 items.json
+teams.json
 
 __pycache__/
 *.pyc

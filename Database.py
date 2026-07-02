@@ -35,3 +35,19 @@ def data_item_load():
         return []
     except json.JSONDecodeError:
         return []
+
+def data_teams(teams_data):
+
+    with open('teams.json', 'w') as file:
+        json.dump(teams_data, file, indent= 4)
+
+def date_teams_load():
+
+    try:
+        with open('items.json', 'r') as file:
+            teams_data = json.load(file)
+            return teams_data
+    except FileNotFoundError:
+        return[]
+    except json.JSONDecodeError:
+        return[]
