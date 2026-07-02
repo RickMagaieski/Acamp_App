@@ -100,6 +100,8 @@ while True:
 
                 if choice == 5:
                     break
+        if user == 5:
+            import Reports
 
         if user == 6:
             break

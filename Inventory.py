@@ -11,8 +11,8 @@ def add_inventory():
 
     items = {
         'item': item_input,
-        'quantity': quantity_input,
-        'value': value_input,
+        'quantity': float(quantity_input),
+        'value': float(value_input),
         'description': description_input
     }
 

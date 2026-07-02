@@ -73,14 +73,14 @@ def read_sheet_data():
 
         participant = {
             "name": full_name,
-            "age": all[2],
+            "age": int(all[2]) if all[2] else 0,
             "phone": all[3],
             "medical": all[4],
             "transportation": all[5],
             "email": all[6],
-            "accommodation": all[7].strip().lower(),
+            "accommodation": all[7].strip().lower() if all[7] else 'cabine',
             "inscription": all[8].strip().lower(),
-            "payment": float(all[9]) if all[9] else 0.00,
+            "payment": float(all[9]) if all[9] else 0.0,
             "food": all[10],
             "id": all[13]
         }
