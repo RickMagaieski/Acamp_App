@@ -26,4 +26,5 @@ def team_creation():
         if user == 'n':
             break
 
+
 #def participants_creation():
