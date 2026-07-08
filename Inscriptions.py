@@ -28,11 +28,8 @@ def add_participant():
          "food" : food_inpt
     }
 
+    inscription_list.append(participant)
     Database.save_data(inscription_list)"""
-from idlelib.mainmenu import default_keydefs
-
-from GoogleSheets import delete
-
 
 def menu():
     print("===== INSCRIÇÕES =====")

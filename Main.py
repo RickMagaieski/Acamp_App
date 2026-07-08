@@ -3,9 +3,11 @@ import Finance
 import Inventory
 import Database
 import GoogleSheets
+import Games
 
 GoogleSheets.read_sheet_data()
 Inventory.list_inventory = Database.data_item_load()
+Games.teams = Database.date_teams_load()
 
 while True:
     print()
@@ -100,6 +102,22 @@ while True:
 
                 if choice == 5:
                     break
+
+        if user == 4:
+
+            while True:
+
+                print()
+
+                choice = Games.menu()
+
+                if choice == 1:
+                    Games.team_creation()
+
+                if choice == 6:
+                    for times in Games.teams:
+                        print(times)
+
         if user == 5:
             import Reports
 

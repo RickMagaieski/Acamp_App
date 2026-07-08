@@ -44,10 +44,12 @@ def data_teams(teams_data):
 def date_teams_load():
 
     try:
-        with open('items.json', 'r') as file:
+        with open('teams.json', 'r') as file:
             teams_data = json.load(file)
             return teams_data
+
     except FileNotFoundError:
-        return[]
+        return []
+
     except json.JSONDecodeError:
         return[]
