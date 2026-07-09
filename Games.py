@@ -8,7 +8,7 @@ def menu():
     print()
 
     print("1. Adicionar Time\n2. Deletar Time\n3. Adicionar Participante\n4. Deletar Participante\n5. Adicionar Pontos"
-          "\n6. Tabela")
+          "\n6. Tabela\n7. Sair")
 
     print()
 
@@ -26,10 +26,12 @@ def team_creation():
 
         team = input("Nome do Time: ").lower().strip()
         leader = input("Nome do Capitao: ").lower().strip()
+        color = input("Cor do time: ").lower().strip()
 
         time = {
             "equipe" : team,
             "lider" : leader,
+            "cor" : color,
             "pessoas" : []
         }
 
@@ -44,8 +46,26 @@ def team_creation():
             break
 
 
-"""def participants_creation():
+def participants_creation():
 
-    import Database
-    
-    for people in"""
+    while True:
+
+        question_team = input("Nome da equipe: ").lower().strip()
+        user = input("Nome do participante: ").lower().strip()
+
+        person = {
+
+            "participante" : user
+
+        }
+
+        question = input("Voce quer adicionar outro (S/N)? ").lower().strip()
+
+        if question == 'n':
+            break
+
+    for people in teams:
+
+        if people['equipe'] == question_team:
+            people['pessoas'].append(person)
+            Database.data_teams(teams)

@@ -114,9 +114,19 @@ while True:
                 if choice == 1:
                     Games.team_creation()
 
+                if choice == 3:
+                    Games.participants_creation()
+
                 if choice == 6:
-                    for times in Games.teams:
-                        print(times)
+                    if not Games.teams:
+                        print("Não há equipes.")
+
+                    else:
+                        for times in Games.teams:
+                            print(times)
+
+                if choice == 7:
+                    break
 
         if user == 5:
             import Reports
