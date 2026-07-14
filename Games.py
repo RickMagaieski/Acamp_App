@@ -36,13 +36,15 @@ def team_creation():
         }
 
         teams.append(time)
-        Database.data_teams(teams)
 
         print()
 
         user = input("Quer adicionar outro time (N/S)? ").lower().strip()
 
         if user == 'n':
+            Database.data_teams(teams)
+            teams.clear()
+
             break
 
 
@@ -61,11 +63,78 @@ def participants_creation():
 
         question = input("Voce quer adicionar outro (S/N)? ").lower().strip()
 
+        for people in teams:
+
+            if people['equipe'] == question_team:
+                people['pessoas'].append(person)
+                Database.data_teams(teams)
+
         if question == 'n':
             break
 
-    for people in teams:
+def remove_teams():
 
-        if people['equipe'] == question_team:
-            people['pessoas'].append(person)
+    import Database
+
+    user = input("Time que deseja excluir: ")
+
+    counter = 0
+
+    while counter < len(teams):
+
+        time = teams[counter]['equipe']
+
+        if user == time:
+
+            del teams[counter]
+
             Database.data_teams(teams)
+
+            print("Time removido com sucesso!")
+
+            break
+
+        else:
+            print("Time nao encontrado, tente novamente.")
+
+        counter += 1
+
+def remove_participants():
+
+    import Database
+
+    user_team = input("Time da pessoa: ").lower().strip()
+    user_person = input("Pessoa que deseja excluir: ").lower().strip()
+
+    team_counter = 0
+
+    while team_counter < len(teams):
+
+        team = teams[team_counter]["equipe"]
+
+        if user_team == team:
+
+            person_counter = 0
+            people = teams[team_counter]["pessoas"]
+
+            while person_counter < len(people):
+
+                person = people[person_counter]["participante"]
+
+                if user_person == person:
+
+                    del people[person_counter]
+
+                    Database.data_teams(teams)
+
+                    print("Pessoa removida com sucesso!")
+                    return
+
+                person_counter += 1
+
+            print("Pessoa não encontrada neste time.")
+            return
+
+        team_counter += 1
+
+    print("Time não encontrado.")

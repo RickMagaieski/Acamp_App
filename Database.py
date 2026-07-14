@@ -36,10 +36,10 @@ def data_item_load():
     except json.JSONDecodeError:
         return []
 
-def data_teams(teams_data):
+def data_teams(teams):
 
     with open('teams.json', 'w') as file:
-        json.dump(teams_data, file, indent= 4)
+        json.dump(teams, file, indent= 4)
 
 def date_teams_load():
 
@@ -52,4 +52,4 @@ def date_teams_load():
         return []
 
     except json.JSONDecodeError:
-        return[]
+        return []

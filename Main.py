@@ -114,8 +114,14 @@ while True:
                 if choice == 1:
                     Games.team_creation()
 
+                if choice == 2:
+                    Games.remove_teams()
+
                 if choice == 3:
                     Games.participants_creation()
+
+                if choice == 4:
+                    Games.remove_participants()
 
                 if choice == 6:
                     if not Games.teams:
