@@ -17,7 +17,7 @@ def add_inventory():
     }
 
     list_inventory.append(items)
-    Database.data_item(list_inventory)
+    Database.data_item_write(list_inventory)
 
     print()
 
@@ -55,7 +55,7 @@ def remove_items():
         if item == user:
             del list_inventory[counter]
             found = True
-            Database.data_item(list_inventory)
+            Database.data_item_write(list_inventory)
 
             print("Item removido com sucesso!")
             break

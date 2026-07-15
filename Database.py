@@ -1,5 +1,7 @@
 import json
 
+#first data set is for participants
+
 def save_data(data):
 
     with open("participants.json", "w") as file:
@@ -19,7 +21,7 @@ def open_data():
         return[]
 
 
-def data_item(item_data):
+def data_item_write(item_data):
 
     with open("items.json", 'w') as file:
         json.dump(item_data,file, indent= 4)
@@ -36,12 +38,13 @@ def data_item_load():
     except json.JSONDecodeError:
         return []
 
-def data_teams(teams):
+
+def data_teams_write(teams):
 
     with open('teams.json', 'w') as file:
         json.dump(teams, file, indent= 4)
 
-def date_teams_load():
+def data_teams_load():
 
     try:
         with open('teams.json', 'r') as file:
