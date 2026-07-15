@@ -5,9 +5,12 @@ import Database
 import GoogleSheets
 import Games
 
+Games.teams.clear()
 GoogleSheets.read_sheet_data()
 Inventory.list_inventory = Database.data_item_load()
-Games.teams = Database.date_teams_load()
+Games.teams = Database.data_teams_load()
+
+#important to fix: Do not depend on the online data.
 
 while True:
     print()
@@ -122,6 +125,9 @@ while True:
 
                 if choice == 4:
                     Games.remove_participants()
+
+                if choice == 5:
+                    Games.score_info()
 
                 if choice == 6:
                     if not Games.teams:

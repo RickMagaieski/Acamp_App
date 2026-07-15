@@ -18,7 +18,9 @@ def menu():
     except ValueError:
         print("Insira um número válido.")
 
+
 def team_creation():
+
     import Database
 
     while True:
@@ -32,7 +34,8 @@ def team_creation():
             "equipe" : team,
             "lider" : leader,
             "cor" : color,
-            "pessoas" : []
+            "pessoas" : [],
+            "score" : 0
         }
 
         teams.append(time)
@@ -42,8 +45,7 @@ def team_creation():
         user = input("Quer adicionar outro time (N/S)? ").lower().strip()
 
         if user == 'n':
-            Database.data_teams(teams)
-            teams.clear()
+            Database.data_teams_write(teams)
 
             break
 
@@ -66,11 +68,13 @@ def participants_creation():
         for people in teams:
 
             if people['equipe'] == question_team:
+
                 people['pessoas'].append(person)
-                Database.data_teams(teams)
+                Database.data_teams_write(teams)
 
         if question == 'n':
             break
+
 
 def remove_teams():
 
@@ -88,7 +92,7 @@ def remove_teams():
 
             del teams[counter]
 
-            Database.data_teams(teams)
+            Database.data_teams_write(teams)
 
             print("Time removido com sucesso!")
 
@@ -99,33 +103,33 @@ def remove_teams():
 
         counter += 1
 
+
 def remove_participants():
 
     import Database
 
-    user_team = input("Time da pessoa: ").lower().strip()
-    user_person = input("Pessoa que deseja excluir: ").lower().strip()
+    team = input("Time da pessoa: ").lower().strip()
+    person_list = input("Pessoa que deseja excluir: ").lower().strip()
 
-    team_counter = 0
+    counter = 0
 
-    while team_counter < len(teams):
+    while counter < len(teams):
 
-        team = teams[team_counter]["equipe"]
+        equip = teams[counter]["equipe"]
 
-        if user_team == team:
+        if team == equip:
 
             person_counter = 0
-            people = teams[team_counter]["pessoas"]
+            people = teams[counter]["pessoas"]
 
             while person_counter < len(people):
 
                 person = people[person_counter]["participante"]
 
-                if user_person == person:
+                if person_list == person:
 
                     del people[person_counter]
-
-                    Database.data_teams(teams)
+                    Database.data_teams_write(teams)
 
                     print("Pessoa removida com sucesso!")
                     return
@@ -135,6 +139,85 @@ def remove_participants():
             print("Pessoa não encontrada neste time.")
             return
 
-        team_counter += 1
+        counter += 1
 
     print("Time não encontrado.")
+
+
+def score_info():
+
+    import Database
+
+    while True:
+
+        print("===== PONTUACAO =====")
+
+        print()
+
+        print("1. Adicionar pontos\n2. Remover pontos\n3. Tabela de pontos\n4. Sair")
+
+        print()
+
+        user = int(input())
+
+        print()
+
+        if user == 1:
+
+            equip_name = input("Nome da equipe: ").lower().strip()
+            equip_score = int(input("Digite a pontuação: "))
+
+            found = False
+
+            for ponto in teams:
+                if ponto['equipe'] == equip_name:
+
+                    add = ponto['score'] + equip_score
+                    ponto['score'] = add
+                    Database.data_teams_write(teams)
+
+                    found = True
+
+                    print()
+
+                    print(f"{equip_score} pontos foram adicionados para a equipe '{equip_name}'!\nPontuacao final: {add}")
+
+                    print()
+
+            if not found:
+                print("Equipe nao listada. Tente novamente!")
+
+        if user == 2:
+
+            equip_name = input("Nome da equipe: ").lower().strip()
+            equip_score = int(input("Digite a pontuação: "))
+
+            found = False
+
+            for ponto in teams:
+                if ponto['equipe'] == equip_name:
+
+                    subtract = ponto['score'] - equip_score
+                    ponto['score'] = subtract
+                    Database.data_teams_write(teams)
+
+                    found = True
+
+                    print()
+
+                    print(f"{equip_score} pontos foram removidos da equipe '{equip_name}'!\nPontuacao final: {subtract}")
+
+                    print()
+
+            if not found:
+                print("Equipe nao listada. Tente novamente!")
+
+        if user == 3:
+            for select in teams:
+
+                print(f"Time: {select['equipe']} = {select['score']}")
+
+            print()
+
+        if user == 4:
+            break
