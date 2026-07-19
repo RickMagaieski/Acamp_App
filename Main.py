@@ -27,6 +27,7 @@ while True:
         user = int(input("Selecione a opção desejada: "))
 
         if user == 1:
+
             while True:
 
                 print()
@@ -45,6 +46,9 @@ while True:
                         for people in GoogleSheets.inscriptions:
                             print(people)
 
+                if choice == 2:
+                    Inscriptions.search_box()
+
                 if choice == 3:
                     if not GoogleSheets.inscriptions:
                         print("Não há inscritos.")
@@ -52,13 +56,11 @@ while True:
                     else:
                         Inscriptions.user_deletion()
 
-                if choice == 2:
-                    Inscriptions.search_box()
-
                 if choice == 4:
                     break
 
         if user == 2:
+
             while True:
 
                 print()
@@ -71,12 +73,17 @@ while True:
                     Finance.account()
 
                 if choice == 3:
-                    Finance.payments()
+
+                    if not GoogleSheets.inscriptions:
+                        print("Não há inscritos.")
+                    else:
+                        Finance.payments()
 
                 if choice == 4:
                     break
 
         if user == 3:
+
             while True:
 
                 print()
@@ -145,6 +152,9 @@ while True:
 
         if user == 6:
             break
+
+        if user > 6:
+            print("Insira um número válido.")
 
     except ValueError:
         print("Insira um número válido.")

@@ -43,6 +43,7 @@ def menu():
     try:
         user_inpt = int(input())
         return user_inpt
+
     except ValueError:
         print("Insira um número válido.")
 
@@ -51,35 +52,48 @@ def user_deletion():
     from GoogleSheets import inscriptions, delete
     import Database
 
-    user = input("Nome que deseja deletar: ").lower().strip()
-    counter = 0
-    found = False
+    while True:
+        if inscriptions:
+            user = input("Nome que deseja deletar (para sair digite 's'): ").lower().strip()
+            counter = 0
+            found = False
 
-    while counter < len(inscriptions):
+            if user == 's':
+                break
 
-        person = inscriptions[counter]["name"]
+            while counter < len(inscriptions):
 
-        if person == user:
+                person = inscriptions[counter]["name"]
 
-            person_id = inscriptions[counter]["id"]
-            deletion_from_sheet = delete(person_id)
+                if person == user:
 
-            if deletion_from_sheet:
+                    person_id = inscriptions[counter]["id"]
+                    deletion_from_sheet = delete(person_id)
 
-                del inscriptions[counter]
-                Database.save_data(inscriptions)
+                    if deletion_from_sheet:
 
-                found = True
+                        del inscriptions[counter]
+                        Database.save_data(inscriptions)
 
-                print(f"Inscrição de {person} removida")
+                        found = True
 
-            break
+                        print(f"Inscrição de {person} removida")
+
+                else:
+                    counter += 1
+
+            print()
+
+            user2 = input("Quer excluir outra pessoa (S/N)? ").lower().strip()
+
+            if user2 == 'n':
+                break
+
+            if not found:
+                print("Esta pessoa não está na lista.")
 
         else:
-            counter += 1
-
-    if not found:
-        print("Esta pessoa não está na lista.")
+            print("A lista está vazia.")
 
 def search_box():
 

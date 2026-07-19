@@ -1,3 +1,5 @@
+from proto.marshal.compat import repeated_composite_types
+
 import Database
 
 teams = []
@@ -15,6 +17,7 @@ def menu():
     try:
         user_inpt = int(input())
         return user_inpt
+
     except ValueError:
         print("Insira um número válido.")
 
@@ -45,8 +48,8 @@ def team_creation():
         user = input("Quer adicionar outro time (N/S)? ").lower().strip()
 
         if user == 'n':
-            Database.data_teams_write(teams)
 
+            Database.data_teams_write(teams)
             break
 
 
@@ -63,7 +66,7 @@ def participants_creation():
 
         }
 
-        question = input("Voce quer adicionar outro (S/N)? ").lower().strip()
+        print("Participante adicionado com sucesso!")
 
         for people in teams:
 
@@ -71,6 +74,8 @@ def participants_creation():
 
                 people['pessoas'].append(person)
                 Database.data_teams_write(teams)
+
+        question = input("Voce quer adicionar outro (S/N)? ").lower().strip()
 
         if question == 'n':
             break
@@ -80,68 +85,98 @@ def remove_teams():
 
     import Database
 
-    user = input("Time que deseja excluir: ")
+    while True:
 
-    counter = 0
+        user = input("Time que deseja excluir: ")
 
-    while counter < len(teams):
+        counter = 0
+        found = False
 
-        time = teams[counter]['equipe']
+        while counter < len(teams):
 
-        if user == time:
+            time = teams[counter]['equipe']
 
-            del teams[counter]
+            if user == time:
 
-            Database.data_teams_write(teams)
+                del teams[counter]
 
-            print("Time removido com sucesso!")
+                Database.data_teams_write(teams)
+                found = True
 
+                print("Time removido com sucesso!")
+
+                break
+
+            else:
+                print("Time nao encontrado, tente novamente.")
+
+            counter += 1
+
+        print()
+
+        if not found:
+            print("Equipe não listada")
+
+        print()
+
+        user2 = input("Deseja continuar (S/N)? ").lower().strip()
+
+        if user2 == 'n':
             break
-
-        else:
-            print("Time nao encontrado, tente novamente.")
-
-        counter += 1
 
 
 def remove_participants():
 
     import Database
 
-    team = input("Time da pessoa: ").lower().strip()
-    person_list = input("Pessoa que deseja excluir: ").lower().strip()
+    while True:
 
-    counter = 0
+        team = input("Time da pessoa: ").lower().strip()
+        person_list = input("Pessoa que deseja excluir: ").lower().strip()
 
-    while counter < len(teams):
+        counter = 0
+        found = False
 
-        equip = teams[counter]["equipe"]
+        while counter < len(teams):
 
-        if team == equip:
+            equip = teams[counter]["equipe"]
 
-            person_counter = 0
-            people = teams[counter]["pessoas"]
+            if team == equip:
 
-            while person_counter < len(people):
+                person_counter = 0
+                people = teams[counter]["pessoas"]
 
-                person = people[person_counter]["participante"]
+                while person_counter < len(people):
 
-                if person_list == person:
+                    person = people[person_counter]["participante"]
 
-                    del people[person_counter]
-                    Database.data_teams_write(teams)
+                    if person_list == person:
 
-                    print("Pessoa removida com sucesso!")
-                    return
+                        del people[person_counter]
+                        Database.data_teams_write(teams)
 
-                person_counter += 1
+                        found = True
 
-            print("Pessoa não encontrada neste time.")
-            return
+                        print("Pessoa removida com sucesso!")
+                        break
 
-        counter += 1
+                    else:
+                        person_counter += 1
 
-    print("Time não encontrado.")
+            else:
+                counter += 1
+
+        print()
+
+        if not found:
+            print("Pessoa e/ou equipe não listada(s).")
+
+        print()
+
+        user = input("Deseja continuar (S/N)? ").lower().strip()
+
+        if user == 'n':
+            break
 
 
 def score_info():
@@ -150,7 +185,7 @@ def score_info():
 
     while True:
 
-        print("===== PONTUACAO =====")
+        print("===== PONTUAÇÃO =====")
 
         print()
 
@@ -158,66 +193,88 @@ def score_info():
 
         print()
 
-        user = int(input())
+        try:
 
-        print()
+            user = int(input())
 
-        if user == 1:
+            if user == 1:
 
-            equip_name = input("Nome da equipe: ").lower().strip()
-            equip_score = int(input("Digite a pontuação: "))
+                equip_name = input("Nome da equipe: ").lower().strip()
+                equip_score = int(input("Digite a pontuação: "))
 
-            found = False
+                found = False
 
-            for ponto in teams:
-                if ponto['equipe'] == equip_name:
+                for ponto in teams:
+                    if ponto['equipe'] == equip_name:
 
-                    add = ponto['score'] + equip_score
-                    ponto['score'] = add
-                    Database.data_teams_write(teams)
+                        add = ponto['score'] + equip_score
+                        ponto['score'] = add
+                        Database.data_teams_write(teams)
 
-                    found = True
+                        found = True
 
-                    print()
+                        print()
 
-                    print(f"{equip_score} pontos foram adicionados para a equipe '{equip_name}'!\nPontuacao final: {add}")
+                        print(f"{equip_score} pontos foram adicionados para a equipe '{equip_name}'!\nPontuacao final: {add}")
 
-                    print()
+                        print()
 
-            if not found:
-                print("Equipe nao listada. Tente novamente!")
+                print()
 
-        if user == 2:
-
-            equip_name = input("Nome da equipe: ").lower().strip()
-            equip_score = int(input("Digite a pontuação: "))
-
-            found = False
-
-            for ponto in teams:
-                if ponto['equipe'] == equip_name:
-
-                    subtract = ponto['score'] - equip_score
-                    ponto['score'] = subtract
-                    Database.data_teams_write(teams)
-
-                    found = True
+                if not found:
+                    print("Equipe nao listada. Tente novamente!")
 
                     print()
 
-                    print(f"{equip_score} pontos foram removidos da equipe '{equip_name}'!\nPontuacao final: {subtract}")
+            if user == 2:
+
+                equip_name = input("Nome da equipe: ").lower().strip()
+                equip_score = int(input("Digite a pontuação: "))
+
+                found = False
+
+                for ponto in teams:
+                    if ponto['equipe'] == equip_name:
+
+                        subtract = ponto['score'] - equip_score
+                        ponto['score'] = subtract
+                        Database.data_teams_write(teams)
+
+                        found = True
+
+                        print()
+
+                        print(f"{equip_score} pontos foram removidos da equipe '{equip_name}'!\nPontuacao final: {subtract}")
+
+                        print()
+
+                print()
+
+                if not found:
+                    print("Não há equipes com esse nome ou não há equipes.")
 
                     print()
 
-            if not found:
-                print("Equipe nao listada. Tente novamente!")
+            if user == 3:
 
-        if user == 3:
-            for select in teams:
+                if teams:
+                    for select in teams:
 
-                print(f"Time: {select['equipe']} = {select['score']}")
+                        print(f"Time: {select['equipe']} = {select['score']}")
+
+                    print()
+                else:
+                    print("Não há equipes.")
+                    print()
+
+            if user == 4:
+                break
+
+            if user > 4:
+                print("Insira um número válido.")
+                print()
+
+        except ValueError:
+            print("Insira um número válido.")
 
             print()
-
-        if user == 4:
-            break

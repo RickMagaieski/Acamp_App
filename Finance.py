@@ -72,6 +72,8 @@ def payments():
                         print(f"(Parcial... Deve: ${27.50 - person['payment']:.2f})")
                     elif person['payment'] == 0.00:
                         print("(Pendente!)")
+                if person['payment'] > 135:
+                    print("(Pago!)")
 
     else:
         print("A lista está vazia.")
@@ -89,22 +91,18 @@ def account():
 
     print("Entradas:")
     for amount in inscriptions:
-        print(f"${amount['payment']:.2f}")
 
         total_profit += amount['payment']
 
-    print()
     print(f"Total Entradas: ${total_profit:.2f}")
 
     print()
 
     print("Saídas:")
     for saidas in list_inventory:
-        print(f"$-{saidas['value']:.2f}")
 
         total_loss += saidas['value']
 
-    print()
     print(f"Total Saídas: $-{total_loss:.2f}")
 
     print()

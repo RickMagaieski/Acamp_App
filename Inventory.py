@@ -4,24 +4,33 @@ def add_inventory():
 
     import Database
 
-    item_input = input("Digite o nome do item: ").lower().strip()
-    value_input = float(input("Digite o valor do item: "))
-    quantity_input = int(input("Digite a quantidade: "))
-    description_input = input("Descrição/Detalhes: ").lower().strip()
+    while True:
 
-    items = {
-        'item': item_input,
-        'quantity': float(quantity_input),
-        'value': float(value_input),
-        'description': description_input
-    }
+        item_input = input("Digite o nome do item: ").lower().strip()
+        value_input = float(input("Digite o valor do item: "))
+        quantity_input = int(input("Digite a quantidade: "))
+        description_input = input("Descrição/Detalhes: ").lower().strip()
 
-    list_inventory.append(items)
-    Database.data_item_write(list_inventory)
+        items = {
+            'item': item_input,
+            'quantity': int(quantity_input),
+            'value': float(value_input),
+            'description': description_input
+        }
 
-    print()
+        list_inventory.append(items)
+        Database.data_item_write(list_inventory)
 
-    print("Item adicionado com sucesso!")
+        print()
+
+        print("Item adicionado com sucesso!")
+
+        print()
+
+        user = input("Deseja adicionar outro item (S/N)? ").lower().strip()
+
+        if user == 'n':
+            break
 
 def menu():
     print("===== INVENTÁRIO =====")
