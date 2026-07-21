@@ -1,6 +1,4 @@
 import os.path
-from ctypes import HRESULT
-
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -76,12 +74,12 @@ def read_sheet_data():
             "age": int(all[2]) if all[2] else 0,
             "phone": all[3],
             "medical": all[4],
-            "transportation": all[5],
+            "transportation": all[5].lower().strip(),
             "email": all[6],
             "accommodation": all[7].strip().lower() if all[7] else 'cabine',
             "inscription": all[8].strip().lower(),
             "payment": float(all[9]) if all[9] else 0.0,
-            "food": all[10],
+            "food": all[10].lower().strip(),
             "id": all[13]
         }
 

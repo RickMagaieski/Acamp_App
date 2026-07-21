@@ -1,5 +1,3 @@
-from proto.marshal.compat import repeated_composite_types
-
 import Database
 
 teams = []
@@ -60,13 +58,13 @@ def participants_creation():
         question_team = input("Nome da equipe: ").lower().strip()
         user = input("Nome do participante: ").lower().strip()
 
+        found = False
+
         person = {
 
             "participante" : user
 
         }
-
-        print("Participante adicionado com sucesso!")
 
         for people in teams:
 
@@ -74,6 +72,13 @@ def participants_creation():
 
                 people['pessoas'].append(person)
                 Database.data_teams_write(teams)
+
+                found = True
+
+                print("Participante adicionado com sucesso!")
+
+        if not found:
+            print("Time não encontrado.")
 
         question = input("Voce quer adicionar outro (S/N)? ").lower().strip()
 
@@ -87,7 +92,7 @@ def remove_teams():
 
     while True:
 
-        user = input("Time que deseja excluir: ")
+        user = input("Time que deseja excluir: ").lower().strip()
 
         counter = 0
         found = False
@@ -108,9 +113,7 @@ def remove_teams():
                 break
 
             else:
-                print("Time nao encontrado, tente novamente.")
-
-            counter += 1
+                counter += 1
 
         print()
 
@@ -162,6 +165,8 @@ def remove_participants():
 
                     else:
                         person_counter += 1
+
+                break
 
             else:
                 counter += 1

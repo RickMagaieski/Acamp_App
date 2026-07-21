@@ -4,9 +4,9 @@ import Inventory
 import Database
 import GoogleSheets
 import Games
+import Reports
 
 Games.teams.clear()
-GoogleSheets.read_sheet_data()
 Inventory.list_inventory = Database.data_item_load()
 Games.teams = Database.data_teams_load()
 
@@ -19,7 +19,7 @@ while True:
 
     print()
 
-    print("1. Inscrição\n2. Finanças\n3. Inventário\n4. Atividades\n5. Reports\n6. Sair")
+    print("1. Inscrição\n2. Finanças\n3. Inventário\n4. Atividades\n5. Reports\n6. Atualizar Dados\n7. Sair")
 
     print()
 
@@ -128,17 +128,26 @@ while True:
                     Games.remove_teams()
 
                 if choice == 3:
-                    Games.participants_creation()
+                    if not Games.teams:
+                        print("Não há equipes.")
+                    else:
+                        Games.participants_creation()
 
                 if choice == 4:
-                    Games.remove_participants()
+                    if not Games.teams:
+                        print("Não há equipes.")
+                    else:
+                        Games.remove_participants()
 
                 if choice == 5:
-                    Games.score_info()
+                    if not Games.teams:
+                        print("Não há equipes.")
+                    else:
+                        Games.score_info()
 
                 if choice == 6:
                     if not Games.teams:
-                        print("Não há equipes.")
+                        print("Não há participantes.")
 
                     else:
                         for times in Games.teams:
@@ -148,12 +157,15 @@ while True:
                     break
 
         if user == 5:
-            import Reports
+            Reports.reports_use()
 
         if user == 6:
+            GoogleSheets.read_sheet_data()
+
+        if user == 7:
             break
 
-        if user > 6:
+        if user > 7:
             print("Insira um número válido.")
 
     except ValueError:

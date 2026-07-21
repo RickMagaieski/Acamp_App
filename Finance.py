@@ -52,7 +52,7 @@ def payments():
                 if person['inscription'] == 'rv':
                     if person['payment'] == 125.00:
                         print("(Pago!)")
-                    elif 145.00 > person['payment'] > 0.00:
+                    elif 125.00 > person['payment'] > 0.00:
                         print(f"(Parcial... Deve: ${125.00 - person['payment']:.2f})")
                     elif person['payment'] == 0.00:
                         print("(Pendente!)")
@@ -101,7 +101,8 @@ def account():
     print("Saídas:")
     for saidas in list_inventory:
 
-        total_loss += saidas['value']
+        total = saidas['value'] * saidas['quantity']
+        total_loss += total
 
     print(f"Total Saídas: $-{total_loss:.2f}")
 
